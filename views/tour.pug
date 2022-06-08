@@ -1,0 +1,206 @@
+extends base
+
+mixin quick-facts(icon, label, attribute)
+    li.tour-attribute
+        ion-icon.tour-icon(name=`${icon}-outline`)
+        span
+            strong=`${label}`
+            = ` rating (${tour.ratingsQuantity})`
+    //- li.tour-attribute
+    //-     ion-icon.tour-icon(name=`${icon}-outline`)
+    //-     span=`${label} ${attribute}`
+
+block content
+    main
+        section
+            .container
+                span.subheading=`${tour.difficulty} ${tour.duration}-day tour`
+                h2.heading-secondary=tour.name
+            .container.tour-gallery
+                img.tour-image.img(src=`/img/tours/${tour.imageCover}` alt='image of a tour scene')
+                .tour-gallery-container
+                    img.tour-gallery-img.img(src=`/img/tours/${tour.images[0]}` alt='Photo of a tour scene')
+                    .tour-gallery-container--2
+                        img.tour-gallery-img.img(src=`/img/tours/${tour.images[1]}` alt='Photo of a tour scene')
+                        img.tour-gallery-img.img(src=`/img/tours/${tour.images[2]}` alt='Photo of a tour scene')
+                .about
+                    span.subheading=`About ${tour.name}`
+                    - const paragraphs = tour.description.split('\n')
+                    each p in paragraphs
+                        p.about-description=p
+            
+        
+                .quick-facts-container
+                    p.subheading.heading-quick-facts Quick facts
+                    ul.quick-facts.tour-attributes
+                        - const data = tour.startDates[0].toLocaleString('en-us', { month: 'long', year: 'numeric'})
+                        li.tour-attribute
+                            ion-icon.tour-icon(name='location-outline')
+                            span=`NEXT DATE ${tour.startDates[0].toLocaleString('en-us', { month: 'long', year: 'numeric'})}` 
+                        li.tour-attribute
+                            ion-icon.tour-icon(name='trending-up-outline')
+                            span=tour.difficulty
+                        li.tour-attribute
+                            ion-icon.tour-icon(name='people-outline')
+                            span=`${tour.maxGroupSize} people`
+                        li.tour-attribute
+                            ion-icon.tour-icon(name='star-outline')
+                            span
+                                strong=tour.ratingsAverage
+                                = ` rating (${tour.ratingsQuantity})`
+                                        
+                                       
+                    .price
+                        span
+                            | $ 
+                            strong.tour-price=tour.price
+                        p
+                            | per person
+                    button.btn.btn-book
+                        | Book now for $ 
+                        strong=tour.price
+                .tour-guides
+                    span.subheading
+                    | tour guides
+                    .guides-details
+
+                        each guide in tour.guides
+                            figure.tour-guide
+                                img.guide-img(src=`img/users/${guide.photo}` alt=`${guide.name}`)
+                                
+                                - if (guide.role === 'lead-guide')
+                                    span.guide-role Lead guide
+                                - if (guide.role === 'guide')
+                                    span.guide-role Tour guide
+                                p.guide-name=guide.name
+                        
+                #map
+                script.
+                    mapboxgl.accessToken =
+                    'pk.eyJ1Ijoiam9uYXNzY2htZWR0bWFubiIsImEiOiJjam54ZmM5N3gwNjAzM3dtZDNxYTVlMnd2In0.ytpI7V7w7cyT1Kq5rT9Z1A';
+                    const geojson = {
+                    type: 'FeatureCollection',
+                    features: [
+                    {
+                    type: 'Feature',
+                    geometry: {
+                    type: 'Point',
+                    coordinates: [-112.987418, 37.198125]
+                    },
+                    properties: {
+                    description: 'Zion Canyon National Park'
+                    }
+                    },
+                    {
+                    type: 'Feature',
+                    geometry: {
+                    type: 'Point',
+                    coordinates: [-111.376161, 36.86438]
+                    },
+                    properties: {
+                    description: 'Antelope Canyon'
+                    }
+                    },
+                    {
+                    type: 'Feature',
+                    geometry: {
+                    type: 'Point',
+                    coordinates: [-112.115763, 36.058973]
+                    },
+                    properties: {
+                    description: 'Grand Canyon National Park'
+                    }
+                    },
+                    {
+                    type: 'Feature',
+                    geometry: {
+                    type: 'Point',
+                    coordinates: [-116.107963, 34.011646]
+                    },
+                    properties: {
+                    description: 'Joshua Tree National Park'
+                    }
+                    }
+                    ]
+                    };
+                    const map = new mapboxgl.Map({
+                    container: 'map',
+                    style: 'mapbox://styles/jonasschmedtmann/cjnxfn3zk7bj52rpegdltx58h',
+                    scrollZoom: false
+                    });
+                    const bounds = new mapboxgl.LngLatBounds();
+                    geojson.features.forEach(function(marker) {
+                    var el = document.createElement('div');
+                    el.className = 'marker';
+                    new mapboxgl.Marker({
+                    element: el,
+                    anchor: 'bottom'
+                    })
+                    .setLngLat(marker.geometry.coordinates)
+                    .addTo(map);
+                    new mapboxgl.Popup({
+                    offset: 30,
+                    closeOnClick: false
+                    })
+                    .setLngLat(marker.geometry.coordinates)
+                    .setHTML('<p>' + marker.properties.description + '</p>')
+                    .addTo(map);
+                    bounds.extend(marker.geometry.coordinates);
+                    });
+                    map.fitBounds(bounds, {
+                    padding: {
+                    top: 200,
+                    bottom: 150,
+                    left: 50,
+                    right: 50
+                    }
+                    });
+                    map.on('load', function() {
+                    map.addLayer({
+                    id: 'route',
+                    type: 'line',
+                    source: {
+                    type: 'geojson',
+                    data: {
+                    type: 'Feature',
+                    properties: {},
+                    geometry: {
+                    type: 'LineString',
+                    coordinates: [
+                    [-112.987418, 37.198125],
+                    [-111.376161, 36.86438],
+                    [-112.115763, 36.058973],
+                    [-116.107963, 34.011646]
+                    ]
+                    }
+                    }
+                    },
+                    layout: {
+                    'line-join': 'round',
+                    'line-cap': 'round'
+                    },
+                    paint: {
+                    'line-color': '#0071eb',
+                    'line-opacity': 0.6,
+                    'line-width': 3
+                    }
+                    });
+                    });
+        section
+            .carousel
+                img(src=`img/users/${tour.reviews[0].user.photo}` alt='Photo of a customer')
+                blockquote.review
+                    p.review-text
+                    | &quot;=tour.reviews[0].review&quot;
+                    p.review-author=tour.reviews[0].user.name
+                    p.review-job Senior Product Manager at Barcleys
+                button.btn-reviews.btn--left
+                    ion-icon.btn-icon(name='chevron-back-outline')
+                button.btn-reviews.btn--right
+                    ion-icon.btn-icon(name='chevron-forward-outline')
+                .dots
+                    button.dot.dot--fill &nbsp;
+                    button.dot &nbsp;
+                    button.dot &nbsp;
+                    button.dot &nbsp;
+

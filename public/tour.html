@@ -1,0 +1,341 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/general.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/query.css" />
+
+    <title>Tour</title>
+  </head>
+  <body>
+    <header class="header">
+      <a href="#">
+        <img src="img/logo_size.jpg" class="logo" alt="omnifood logo" />
+      </a>
+      <nav class="main-nav">
+        <ul class="main-nav-list">
+          <li><a class="main-nav-link" href="#how">How it works</a></li>
+          <li><a class="main-nav-link" href="#meals">Packages</a></li>
+          <li>
+            <a class="main-nav-link" href="#testimonials">Testimonials</a>
+          </li>
+          <li><a class="main-nav-link" href="#pricing">Sign in</a></li>
+          <li><a class="main-nav-link nav-cta" href="#cta">Sign up</a></li>
+        </ul>
+      </nav>
+      <button class="btn-mobile-nav">
+        <ion-icon class="icon-mobile-nav" name="menu-outline"></ion-icon>
+        <ion-icon class="icon-mobile-nav" name="close-outline"></ion-icon>
+      </button>
+    </header>
+    <main>
+      <section>
+        <div class="container">
+          <span class="subheading">MEDIUM 7-DAY TOUR</span>
+          <h2 class="heading-secondary">
+            The Sea Explorer
+          </h2>
+        </div>
+
+        <div class="container tour-gallery">
+          <img class="tour-image img" src="img/tours/tour-6-cover.jpg" alt="image of a tour scene">
+          <div class=" tour-gallery-container">
+            <img class="tour-gallery-img img" src="img/tours/tour-4-1.jpg" alt="Photo of a tour scene">
+            <div class="tour-gallery-container--2">
+              <img class="tour-gallery-img img" src="img/tours/tour-4-1.jpg" alt="Photo of a tour scene">
+              <img class="tour-gallery-img img" src="img/tours/tour-4-1.jpg" alt="Photo of a tour scene">
+              
+            </div>
+          </div>
+          <div class="about">
+            <span class="subheading">About the Sea Explorer</span>
+            <p class="about-description">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            </p>
+            <p class="about-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </div>
+          <div class="quick-facts-container">
+            <p class=" subheading heading-quick-facts">Quick facts</p>
+            <ul class="quick-facts tour-attributes">
+              <li class="tour-attribute">
+                <ion-icon
+                class="tour-icon"
+                name="location-outline"
+                ></ion-icon
+                ><span> Miami, USA</span>
+              </li>
+              <li class="tour-attribute">
+                <ion-icon
+                class="tour-icon"
+                name="location-outline"
+                ></ion-icon
+                ><span> Miami, USA</span>
+              </li>
+              <li class="tour-attribute">
+                <ion-icon
+                class="tour-icon"
+                name="location-outline"
+                ></ion-icon
+                ><span> Miami, USA</span>
+              </li>
+              <li class="tour-attribute">
+                <ion-icon
+                class="tour-icon"
+                name="location-outline"
+                ></ion-icon
+                ><span> Miami, USA</span>
+              </li>
+              
+            </ul>
+            <div class="price">            
+              <span>$ <strong class="tour-price">49</strong></span>
+              <p>
+                per person
+              </p>
+          </div>
+            <button class="btn btn-book">Book now for $ <strong>49</strong></button>
+          </div>
+          <div class="tour-guides">
+            <span class="subheading">
+              tour guides
+            </span>
+            <div class="guides-details">
+              <figure class="tour-guide">
+                <img class="guide-img" src="img/users/users-5c8a1f292f8fb814b56fa184-1648030915857.jpeg" alt="img of a tour a tour guide">
+                <span class="guide-role">Lead guide</span>
+                <p class="guide-name">Steve T Scaife</p>
+              </figure>
+              <figure class="tour-guide">
+                <img class="guide-img" src="img/users/users-5c8a1f292f8fb814b56fa184-1648030915857.jpeg" alt="img of a tour a tour guide">
+                <span class="guide-role">Lead guide</span>
+                <p class="guide-name">Steve T Scaife</p>
+              </figure>
+              <figure class="tour-guide">
+                <img class="guide-img" src="img/users/users-5c8a1f292f8fb814b56fa184-1648030915857.jpeg" alt="img of a tour a tour guide">
+                <span class="guide-role">Lead guide</span>
+                <p class="guide-name">Steve T Scaife</p>
+              </figure>
+            </div>
+          </div>
+          
+          <div id="map"></div>
+      <script>
+        mapboxgl.accessToken =
+          'pk.eyJ1Ijoiam9uYXNzY2htZWR0bWFubiIsImEiOiJjam54ZmM5N3gwNjAzM3dtZDNxYTVlMnd2In0.ytpI7V7w7cyT1Kq5rT9Z1A';
+
+        const geojson = {
+          type: 'FeatureCollection',
+          features: [
+            {
+              type: 'Feature',
+              geometry: {
+                type: 'Point',
+                coordinates: [-112.987418, 37.198125]
+              },
+              properties: {
+                description: 'Zion Canyon National Park'
+              }
+            },
+            {
+              type: 'Feature',
+              geometry: {
+                type: 'Point',
+                coordinates: [-111.376161, 36.86438]
+              },
+              properties: {
+                description: 'Antelope Canyon'
+              }
+            },
+            {
+              type: 'Feature',
+              geometry: {
+                type: 'Point',
+                coordinates: [-112.115763, 36.058973]
+              },
+              properties: {
+                description: 'Grand Canyon National Park'
+              }
+            },
+            {
+              type: 'Feature',
+              geometry: {
+                type: 'Point',
+                coordinates: [-116.107963, 34.011646]
+              },
+              properties: {
+                description: 'Joshua Tree National Park'
+              }
+            }
+          ]
+        };
+
+        const map = new mapboxgl.Map({
+          container: 'map',
+          style: 'mapbox://styles/jonasschmedtmann/cjnxfn3zk7bj52rpegdltx58h',
+          scrollZoom: false
+        });
+
+        const bounds = new mapboxgl.LngLatBounds();
+
+        geojson.features.forEach(function(marker) {
+          var el = document.createElement('div');
+          el.className = 'marker';
+
+          new mapboxgl.Marker({
+            element: el,
+            anchor: 'bottom'
+          })
+            .setLngLat(marker.geometry.coordinates)
+            .addTo(map);
+
+          new mapboxgl.Popup({
+            offset: 30,
+            closeOnClick: false
+          })
+            .setLngLat(marker.geometry.coordinates)
+            .setHTML('<p>' + marker.properties.description + '</p>')
+            .addTo(map);
+
+          bounds.extend(marker.geometry.coordinates);
+        });
+
+        map.fitBounds(bounds, {
+          padding: {
+            top: 200,
+            bottom: 150,
+            left: 50,
+            right: 50
+          }
+        });
+
+        map.on('load', function() {
+          map.addLayer({
+            id: 'route',
+            type: 'line',
+            source: {
+              type: 'geojson',
+              data: {
+                type: 'Feature',
+                properties: {},
+                geometry: {
+                  type: 'LineString',
+                  coordinates: [
+                    [-112.987418, 37.198125],
+                    [-111.376161, 36.86438],
+                    [-112.115763, 36.058973],
+                    [-116.107963, 34.011646]
+                  ]
+                }
+              }
+            },
+            layout: {
+              'line-join': 'round',
+              'line-cap': 'round'
+            },
+            paint: {
+              'line-color': '#0071eb',
+              'line-opacity': 0.6,
+              'line-width': 3
+            }
+          });
+        });
+      </script>
+            
+        </div>
+      </section>
+      <section class="">
+        <div class="carousel">
+          <img src="img/users/user-11.jpg" alt="Photo of a customer">
+          <blockquote class="review">
+            <p class="review-text">
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+            </p>
+            <p class="review-author">Ben Almedia</p>
+            <p class="review-job">Senior Product Manager at Barcleys</p>
+          </blockquote>
+          <button class="btn-reviews btn--left"><ion-icon class="btn-icon" name="chevron-back-outline"></ion-icon></button>
+          <button class="btn-reviews btn--right"><ion-icon class="btn-icon"name="chevron-forward-outline"></ion-icon></button>
+          <div class="dots">
+            <button class="dot dot--fill">&nbsp;</button>
+            <button class="dot">&nbsp;</button>
+            <button class="dot">&nbsp;</button>
+            <button class="dot">&nbsp;</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container grid grid--footer">
+        <div class="logo-col">
+          <a href="#" class="footer-logo">
+            <img src="img/logo_size.jpg" class="logo" alt="omnifood logo" />
+          </a>
+          <ul class="social-links">
+            <li><a class="footer-link" href="#"><ion-icon class="social-icon" name="logo-instagram"></ion-icon></a></li>
+            <li><a class="footer-link" href="#"><ion-icon class="social-icon" name="logo-facebook"></ion-icon></a></li>
+            <li><a class="footer-link" href="#"><ion-icon class="social-icon" name="logo-twitter"></ion-icon></a></li>
+          </ul>
+          <p class="copyright">copyright &copy; <span class="year">2027</span> by Dream Tours, Inc. All right reserved</p>
+        </div>
+        <div class="address-col">
+          <p class="footer-heading">Contact use</p>
+          <address class="contacts">
+            <p class="address">
+              Carwash Kisumu.
+            </p>
+            <p>
+              <a class="footer-link" href="tel:415-201-6370">415-201-6370</a><br>
+              <a class="footer-link" href="mailto:hello@dreamtours.com">hello@dreamtours.com</a>
+            </p>
+          </address>
+        </div>
+        <nav class="nav-col">
+          <p class="footer-heading">Account</p>
+          <ul class="footer-nav">
+            <li><a class="footer-link" href="#">Create account</a></li>
+            <li><a class="footer-link" href="#">Sign in</a></li>
+            <li><a class="footer-link"  class="footer-link"href="#">iOS app</a></li>
+            <li><a class="footer-link" href="#">Android app</a></li>
+          </ul>
+        </nav>
+        <nav class="nav-col">
+          <p class="footer-heading">Company</p>
+          <ul class="footer-nav">
+            <li><a class="footer-link" href="#">About Dream Tours</a></li>
+            <li><a class="footer-link" href="#">For Business</a></li>
+            <li><a class="footer-link" href="#">Cooking partners</a></li>
+            <li><a class="footer-link" href="#">Careers<a></li>
+          </ul>
+        </nav><nav class="nav-col">
+          <p class="footer-heading">Resources</p>
+          <ul class="footer-nav">
+            <li><a class="footer-link" href="#">Recipe directory</a></li>
+            <li><a class="footer-link" href="#">Help center</a></li>
+            <li><a class="footer-link" href="#">Privacy & terms</a></li>
+          </ul>
+        </nav>     
+      </div>
+    </footer>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+
+    <script defer src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"></script>
+    <script defer src="js/script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,164 @@
+extends base
+
+block content 
+    main
+        section.section-hero
+            .hero
+                .hero-section-img-container
+                    img.hero-img(src='img/beach-99.jpg' alt='')
+                .hero-content
+                    .content-container
+                        p.heading-primary Take your dream vocation.
+        section.section-how
+            .container
+                span.subheading Easy and fast
+                h2.heading-secondary
+                    | Book your next tour in 3 simple steps:
+            .container.grid.grid--3-cols.grid--v
+                .container
+                    p.step-number 01
+                    h3.heading-tertiary Choose your Destination
+                    p.step-description Scroll through our trips and select your perfect dream tour.
+                .container
+                    p.step-number 02
+                    h3.heading-tertiary Make payment
+                    p.step-description You will be able to pay using a variety of payment methods via a dedicated link through the secure payment processor Stripe.
+                .container
+                    p.step-number 03
+                    h3.heading-tertiary Start your tour
+                    p.step-description Reach at the pickup location at the scheduled date
+        section.section-tours
+            .container.center-text
+                span.subheading Tours
+                h2.heading-secondary Exciting tours for adventures people.
+            .container.grid.grid--3-cols.tour-grid
+
+                each tour in tours 
+                    .tour
+                        .tour-header
+                            img.tour-img(src=`img/tours/${tour.imageCover}` alt='image of an elephant')
+                            .tour-heading
+                                p.tour-title=tour.name
+                        .tour-details
+                            .tour-content
+                                span.tour-detail=`${tour.difficulty} ${tour.duration}-day tour` 
+                                p.tour-summary=tour.summary 
+                                ul.tour-attributes
+                                    li.tour-attribute
+                                        ion-icon.tour-icon(name='location-outline')
+                                        span=tour.startLocation.description
+
+                                    li.tour-attribute
+                                        ion-icon.tour-icon(name='calendar-clear-outline')
+                                        span=tour.startDates[0].toLocaleString('en-us', { month: 'long', year: 'numeric'})
+                                    li.tour-attribute
+                                        ion-icon.tour-icon(name='flag-outline')
+                                        span=`${tour.locations.length} stops` 
+                                    li.tour-attribute
+                                        ion-icon.tour-icon(name='people-outline')
+                                        span=`${tour.maxGroupSize} people`
+                        .tour-footer
+                            ul.footer-details
+                                li.tour-attribute
+                                    ion-icon.tour-icon(name='star-outline')
+                                    span
+                                        strong=tour.ratingsAverage
+                                        = ` rating (${tour.ratingsQuantity})`
+                                li
+                                    span $
+                                        strong=tour.price
+                                        |   per person
+                            a.btn(href=`/tour/${tour.slug}`) Details
+
+
+
+            .container.all-tours
+                a.link(href='#') See all tours &rarr;
+
+        section#testionials.section-testimonials
+            .testimonial-container
+                span.subheading testimonials
+                h2.heading-secondary Once you try it you can&apos;t go back
+                .testimonials
+                    figure.testimonial
+                        img.testimonial-img(src='img/users/user-2.jpg' alt='photo of customer')
+                        blockquote.testimonial-text
+                            | Porttitor ullamcorper rutrum semper proin mus felis varius
+                            | convallis conubia nisl erat lectus eget.
+                        p.testimonial-name &mdash; Eliana
+                    figure.testimonial
+                        img.testimonial-img(src='img/users/user-3.jpg' alt='photo of customer')
+                        blockquote.testimonial-text
+                            | Porttitor ullamcorper rutrum semper proin mus felis varius
+                            | convallis conubia nisl erat lectus eget.
+                        p.testimonial-name &mdash; Eliana
+                    figure.testimonial
+                        img.testimonial-img(src='img/users/user-4.jpg' alt='photo of customer')
+                        blockquote.testimonial-text
+                            | Porttitor ullamcorper rutrum semper proin mus felis varius
+                            | convallis conubia nisl erat lectus eget.
+                        p.testimonial-name &mdash; Eliana
+                    figure.testimonial
+                        img.testimonial-img(src='img/users/user-5.jpg' alt='photo of customer')
+                        blockquote.testimonial-text
+                            | Porttitor ullamcorper rutrum semper proin mus felis varius
+                            | convallis conubia nisl erat lectus eget.
+                        p.testimonial-name &mdash; Eliana
+            .gallery
+                figure.gallery-item
+                    img(src='img/gallery/tour-1-2.jpg' alt='Photo of tour scenes')
+                figure.gallery-item
+                    img(src='img/gallery/tour-623c07afd6231301669b6306-1648145091747-2.jpeg' alt='Photo of tour scenes')
+                figure.gallery-item
+                    img(src='img/gallery/tour-623c07afd6231301669b6306-1648145090794-cover.jpeg' alt='Photo of tour scenes')
+                figure.gallery-item
+                    img(src='img/gallery/tour-1-cover.jpg' alt='Photo of tour scenes')
+                figure.gallery-item
+                    img(src='img/gallery/tour-2-1.jpg' alt='Photo of tour scenes')
+                figure.gallery-item
+                    img(src='img/gallery/tour-3-1.jpg' alt='Photo of tour scenes')
+                figure.gallery-item
+                    img(src='img/gallery/tour-2-2.jpg' alt='Photo of tour scenes')
+                figure.gallery-item
+                    img(src='img/gallery/tour-4-2.jpg' alt='Photo of tour scenes')
+                figure.gallery-item
+                    img(src='img/gallery/tour-3-3.jpg' alt='Photo of tour scenes')
+                figure.gallery-item
+                    img(src='img/gallery/tour-5-2.jpg' alt='Photo of tour scenes')
+                figure.gallery-item
+                    img(src='img/gallery/tour-6-cover.jpg' alt='Photo of tour scenes')
+                figure.gallery-item
+                    img(src='img/gallery/tour-7-1.jpg' alt='Photo of tour scenes')
+        section#cta.section-cta
+            .container
+                .cta
+                    .cta-text-box
+                        h2.heading-secondary
+                            | Infinite memories. Make it yours today!
+                        p.cta-text
+                            | Infite memories. Make it yours today. Sign up now book your
+                            | perfect dreeam tour
+                        form.cta-form(action='')
+                            div
+                                label(for='full-name') Full Name
+                                input#full-name(type='text' placeholder='Brent Otieno' required='')
+                            div
+                                label(for='email') Email
+                                input#email(type='email' name='' placeholder='me@example.com' required='')
+                            div
+                                label(for='password') Password
+                                input#password(type='password' name='' placeholder='••••••••' required='')
+                            div
+                                label(for='confirm-password') Confirm password
+                                input#confirm-password(type='password' name='' placeholder='••••••••' required='')
+                            div
+                                label(for='select-where') Where did you hear from us?
+                                select#select-where(name='' required='')
+                                    option(value='') PLease choose one option
+                                    option(value='friends') Friends and Family
+                                    option(value='facebook') Facebook app
+                                    option(value='podcast') Podcasts
+                                    option(value='other') other
+                            button.btn.btn--form Sign up now
+                    .cta-img-box(role='img' aria-label='lady swing on a rope')
+            

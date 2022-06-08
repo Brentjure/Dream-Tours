@@ -1,0 +1,221 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/general.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/query.css" />
+
+    <title>Document</title>
+  </head>
+  <body>
+    <header class="header me-header">
+      <a href="#">
+        <img src="img/logo_size.jpg" class="logo" alt="omnifood logo" />
+      </a>
+      <nav class="main-nav">
+        <ul class="main-nav-list">
+          <li><a class="main-nav-link" href="#how">How it works</a></li>
+          <li><a class="main-nav-link" href="#meals">Packages</a></li>
+          <li>
+            <a class="main-nav-link" href="#testimonials">Testimonials</a>
+          </li>
+          <li><a class="main-nav-link" href="#pricing">Sign in</a></li>
+          <li><a class="main-nav-link nav-cta" href="#cta">Sign up</a></li>
+        </ul>
+      </nav>
+      <button class="btn-mobile-nav">
+        <ion-icon class="icon-mobile-nav" name="menu-outline"></ion-icon>
+        <ion-icon class="icon-mobile-nav" name="close-outline"></ion-icon>
+      </button>
+    </header>
+    <main>
+      <section>
+        <div class="container grid acc-container">
+          <div class="menu">
+            <nav class="side-menu">
+              <ul class="side-menu-list">
+                <li class="side-el side-el--active">
+                  <ion-icon
+                    class="side-menu-icon"
+                    name="settings-outline"
+                  ></ion-icon>
+                  <span>Settings</span>
+                </li>
+                <li class="side-el">
+                  <ion-icon
+                    class="side-menu-icon"
+                    name="briefcase-outline"
+                  ></ion-icon>
+                  <span>My Bookings</span>
+                </li>
+                <li class="side-el">
+                  <ion-icon
+                    class="side-menu-icon"
+                    name="star-outline"
+                  ></ion-icon>
+                  <span>My Reviews</span>
+                </li>
+                <li class="side-el">
+                  <ion-icon
+                    class="side-menu-icon"
+                    name="card-outline"
+                  ></ion-icon>
+                  <span>My Billing</span>
+                </li>
+              </ul>
+              <ul class="side-menu-list admin"></ul>
+            </nav>
+          </div>
+          <div class="content">
+            <p class="subheading content-heading">Your Account Seetings</p>
+            <div class="form-container">
+              <form class="acc-setting-form" action="">
+                <div>
+                  <label for="name">Name</label>
+                  <input type="text" id="name" placeholder="Brent Otieno" />
+                </div>
+                <div>
+                  <label for="email">Email</label>
+                  <input type="email" id="email" placeholder="me@exmple.com" />
+                </div>
+                <div class="photo-upload">
+                  <img
+                    class="form-user-img"
+                    src="img/users/user-11.jpg"
+                    alt="User photo"
+                  />
+                  <input
+                    class="form-upload"
+                    type="file"
+                    accept="image/*"
+                    id="photo"
+                    name="photo"
+                  />
+                  <label for="photo">Choose new photo</label>
+                </div>
+                <div class="btn-form">
+                  <button class="btn form-btn">Save settings</button>
+                </div>
+              </form>
+            </div>
+            <p class="subheading content-heading content-heading--2">
+              Password Change
+            </p>
+            <div class="form-container">
+              <form class="acc-setting-form">
+                <div>
+                  <label for="current-password">Current Password</label>
+                  <input
+                    type="password"
+                    id="current-password"
+                    placeholder="••••••••"
+                    required
+                    minlength="8"
+                  />
+                </div>
+                <div>
+                  <label for="new-password">New Password</label>
+                  <input
+                    type="password"
+                    id="new-password"
+                    placeholder="••••••••"
+                    required
+                    minlength="8"
+                  />
+                </div>
+                <div>
+                  <label for="confirm-password">Confirm Password</label>
+                  <input
+                    type="password"
+                    id="confirm-password"
+                    placeholder="••••••••"
+                    required
+                    minlength="8"
+                  />
+                </div>
+                <div class="btn-form">
+                  <button class="btn form-btn">save password</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="container grid grid--footer">
+        <div class="logo-col">
+          <a href="#" class="footer-logo">
+            <img src="img/logo_size.jpg" class="logo" alt="omnifood logo" />
+          </a>
+          <ul class="social-links">
+            <li><a class="footer-link" href="#"><ion-icon class="social-icon" name="logo-instagram"></ion-icon></a></li>
+            <li><a class="footer-link" href="#"><ion-icon class="social-icon" name="logo-facebook"></ion-icon></a></li>
+            <li><a class="footer-link" href="#"><ion-icon class="social-icon" name="logo-twitter"></ion-icon></a></li>
+          </ul>
+          <p class="copyright">copyright &copy; <span class="year">2027</span> by Dream Tours, Inc. All right reserved</p>
+        </div>
+        <div class="address-col">
+          <p class="footer-heading">Contact use</p>
+          <address class="contacts">
+            <p class="address">
+              Carwash Kisumu.
+            </p>
+            <p>
+              <a class="footer-link" href="tel:415-201-6370">415-201-6370</a><br>
+              <a class="footer-link" href="mailto:hello@dreamtours.com">hello@dreamtours.com</a>
+            </p>
+          </address>
+        </div>
+        <nav class="nav-col">
+          <p class="footer-heading">Account</p>
+          <ul class="footer-nav">
+            <li><a class="footer-link" href="#">Create account</a></li>
+            <li><a class="footer-link" href="#">Sign in</a></li>
+            <li><a class="footer-link"  class="footer-link"href="#">iOS app</a></li>
+            <li><a class="footer-link" href="#">Android app</a></li>
+          </ul>
+        </nav>
+        <nav class="nav-col">
+          <p class="footer-heading">Company</p>
+          <ul class="footer-nav">
+            <li><a class="footer-link" href="#">About Dream Tours</a></li>
+            <li><a class="footer-link" href="#">For Business</a></li>
+            <li><a class="footer-link" href="#">Cooking partners</a></li>
+            <li><a class="footer-link" href="#">Careers<a></li>
+          </ul>
+        </nav><nav class="nav-col">
+          <p class="footer-heading">Resources</p>
+          <ul class="footer-nav">
+            <li><a class="footer-link" href="#">Recipe directory</a></li>
+            <li><a class="footer-link" href="#">Help center</a></li>
+            <li><a class="footer-link" href="#">Privacy & terms</a></li>
+          </ul>
+        </nav>     
+      </div>
+    </footer>
+
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+
+    <script defer src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"></script>
+    <script defer src="js/script.js"></script>
+  </body>
+</html>
