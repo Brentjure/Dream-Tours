@@ -16,6 +16,7 @@ const userRouter = require('./routes/userRoute');
 const reviewRouter = require('./routes/reviewRoute');
 const bookingRouter = require('./routes/bookingRoute');
 const globalErrorHandler = require('./controllers/errorController');
+const AppError = require('./utils/appError');
 
 const app = express();
 
@@ -35,6 +36,41 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Set Security HTTP headers
 app.use(helmet());
+app.use(
+  helmet.contentSecurityPolicy({
+    contentSecurityPolicyHeader: 'Content-Security-Policy',
+    directives: {
+      defaultSrc: ["'self'", 'data:', 'blob:'],
+      baseUri: ["'self'"],
+      fontSrc: ["'self'", 'https:', 'data:'],
+      scriptSrc: [
+        "'self'",
+        'unsafe-inline',
+        'https://unpkg.com/',
+        'https://cdnjs.cloudflare.com/',
+      ],
+      // scriptSrc: ["'self'", 'https://*.cloudflare.com'],
+      // scriptSrc: ["'self'", 'https://*.stripe.com'],
+      // scriptSrc: ["'self'", 'https://*.mapbox.com'],
+      frameSrc: ["'self'", 'https://*.stripe.com'],
+      objectSrc: ["'none'"],
+      styleSrc: ["'self'", 'https:', "'unsafe-inline'"],
+      workerSrc: ["'self'", 'data:', 'blob:'],
+      childSrc: ["'self'", 'blob:'],
+      imgSrc: ["'self'", 'data:', 'blob:'],
+      connectSrc: [
+        "'self'",
+        'blob:',
+        'https://api.mapbox.com',
+        'https://*.tiles.mapbox.com',
+        'https://events.mapbox.com',
+        'https://unpkg.com/',
+        'https://cdnjs.cloudflare.com/',
+      ],
+      //upgradeInsecureRequests: [],
+    },
+  })
+);
 
 // Development logging
 if (process.env.NODE_ENV === 'development') {
@@ -90,10 +126,6 @@ app.use('/api/v1/reviews', reviewRouter);
 app.use('/api/v1/bookings', bookingRouter);
 
 app.all('*', (req, res, next) => {
-  // const err = new Error(`Can't find ${req.originalUrl} on this server!`);
-  // err.status = 'fail';
-  // err.statusCode = 404;
-
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
 

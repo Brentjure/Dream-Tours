@@ -903,13 +903,23 @@
   margin-top: 4.8rem;
 }
 
+/********************************
+********* LOG IN ***********  */
+
+.log-in-con {
+  align-items: center;
+  margin: 0 auto;
+  /* display: inline-block; */
+  padding: 5rem 7rem;
+}
+
 .log-in-form {
   background-color: #e6f1f7;
   border-radius: 9px;
   padding: 4.8rem;
 
   align-items: center;
-  /* width: 70%; */
+  /* max-width: 55rem; */
 }
 
 .log-in-btn {
@@ -923,3 +933,17 @@
 .log-in-form-container {
   align-items: center;
 }
+
+.remember {
+  display: flex;
+}
+
+.forget {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 3rem;
+}
+
+/* *****************************
+****** FPRGOT PASSWORD*******
+***************************** */

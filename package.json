@@ -6,11 +6,16 @@
   "scripts": {
     "start": "nodemon server.js",
     "dev": "nodemon server.js",
-    "start:prod": "SET NODE_ENV=production&&nodemon server.js"
+    "start:prod": "SET NODE_ENV=production&&nodemon server.js",
+    "debug": "ndb server.js",
+    "watch:js": "parcel watch --no-hmr ./public/js/index.js --out-dir ./public/js --out-file bundle.js --public-url /js",
+    "build:js": "parcel build ./public/js/index.js --out-dir ./public/js --out-file bundle.js --public-url /js"
   },
   "author": "brent jure",
   "license": "ISC",
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
+    "axios": "^0.27.2",
     "bcrypt": "^5.0.1",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",
@@ -43,5 +48,8 @@
   },
   "engines": {
     "node": "^16"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5"
   }
 }

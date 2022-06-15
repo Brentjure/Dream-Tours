@@ -9,10 +9,19 @@ header.header
         a.main-nav-link(href='#meals') Packages
       li
         a.main-nav-link(href='#testimonials') Testimonials
-      li
-        a.main-nav-link(href='#pricing') Log in
-      li
-        a.main-nav-link.nav-cta(href='#cta') Sign up
+      
+      if(user) 
+        li
+          a.main-nav-link(href='/login') Log out
+          a.main-nav-link(href='#') 
+            img(src=`img/users/${user.photo}`, alt=`Photo of ${user.name}`)
+            span=user.name.split(' ')[0]
+
+      else
+        li
+          a.main-nav-link(href='/login') Log in
+        li
+          a.main-nav-link.nav-cta(href='#cta') Sign up
   button.btn-mobile-nav
     ion-icon.icon-mobile-nav(name='menu-outline')
     ion-icon.icon-mobile-nav(name='close-outline')

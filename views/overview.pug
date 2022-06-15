@@ -5,7 +5,7 @@ block content
         section.section-hero
             .hero
                 .hero-section-img-container
-                    img.hero-img(src='img/beach-99.jpg' alt='')
+                    img.hero-img(src='img/beach-99.jpg' alt='Photo of a beach')
                 .hero-content
                     .content-container
                         p.heading-primary Take your dream vocation.
@@ -36,7 +36,7 @@ block content
                 each tour in tours 
                     .tour
                         .tour-header
-                            img.tour-img(src=`img/tours/${tour.imageCover}` alt='image of an elephant')
+                            img.tour-img(src=`img/tours/${tour.imageCover}` alt=`Photo of a tour - ${tour.name}`)
                             .tour-heading
                                 p.tour-title=tour.name
                         .tour-details

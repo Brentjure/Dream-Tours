@@ -1,0 +1,26 @@
+extends base
+
+block content 
+    main
+        .container.log-in-con
+            .log-in-form
+                span.subheading  Log into your account
+                .form-container
+                    form.acc-setting-form.log-in
+                        div
+                            label(for='email') Email address
+                            input#email(type='email' placeholder='you@example.com' required='' minlength='8')
+                        div
+                            label(for='password') Password
+                            input#password(type='password' placeholder='••••••••' required='' minlength='8')
+                        div 
+                        div.forget
+                            div.remember 
+                                label(for="remember").form-remember
+                                input#remember(type='checkbox')
+                                | Remember Me
+                            a.form-recovery(href='/resetPassword') Forgot Password?
+                        div 
+                            .log-in-btn
+                                button(type="submit").btn Log in
+                            
