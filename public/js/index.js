@@ -5,11 +5,7 @@ import { displayMap } from './mapbox';
 
 // DOM ELEMENTS
 const mapBox = document.getElementById('map');
-const loginForm = document.querySelector('.log-in');
-
-// VALUES
-const email = document.getElementById('email').value;
-const password = document.getElementById('password').value;
+const loginForm = document.querySelector('.form--login');
 
 // DELEGATION
 if (mapBox) {
@@ -20,6 +16,9 @@ if (mapBox) {
 if (loginForm) {
   loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
+    const email = document.getElementById('email--login').value;
+    const password = document.getElementById('password--login').value;
+    console.log(`EMAIL: ${email}, password: ${password}`);
 
     login(email, password);
   });

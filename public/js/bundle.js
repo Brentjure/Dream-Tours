@@ -11142,7 +11142,7 @@ var login = /*#__PURE__*/function () {
           case 7:
             _context.prev = 7;
             _context.t0 = _context["catch"](0);
-            alert(_context.t0.response.data);
+            alert("ERROR : ".concat(_context.t0.response.data.message));
 
           case 10:
           case "end":
@@ -11478,10 +11478,7 @@ var _mapbox = require("./mapbox");
 
 // DOM ELEMENTS
 var mapBox = document.getElementById('map');
-var loginForm = document.querySelector('.log-in'); // VALUES
-
-var email = document.getElementById('email').value;
-var password = document.getElementById('password').value; // DELEGATION
+var loginForm = document.querySelector('.form--login'); // DELEGATION
 
 if (mapBox) {
   var locations = JSON.parse(mapBox.dataset.locations);
@@ -11491,6 +11488,9 @@ if (mapBox) {
 if (loginForm) {
   loginForm.addEventListener('submit', function (e) {
     e.preventDefault();
+    var email = document.getElementById('email--login').value;
+    var password = document.getElementById('password--login').value;
+    console.log("EMAIL: ".concat(email, ", password: ").concat(password));
     (0, _login.login)(email, password);
   });
 } //////////////////////////////////////////////////
