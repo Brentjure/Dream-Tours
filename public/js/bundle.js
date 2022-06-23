@@ -11088,15 +11088,41 @@ module.exports.default = axios;
 
 },{"./utils":"../../node_modules/axios/lib/utils.js","./helpers/bind":"../../node_modules/axios/lib/helpers/bind.js","./core/Axios":"../../node_modules/axios/lib/core/Axios.js","./core/mergeConfig":"../../node_modules/axios/lib/core/mergeConfig.js","./defaults":"../../node_modules/axios/lib/defaults/index.js","./cancel/CanceledError":"../../node_modules/axios/lib/cancel/CanceledError.js","./cancel/CancelToken":"../../node_modules/axios/lib/cancel/CancelToken.js","./cancel/isCancel":"../../node_modules/axios/lib/cancel/isCancel.js","./env/data":"../../node_modules/axios/lib/env/data.js","./helpers/toFormData":"../../node_modules/axios/lib/helpers/toFormData.js","../lib/core/AxiosError":"../../node_modules/axios/lib/core/AxiosError.js","./helpers/spread":"../../node_modules/axios/lib/helpers/spread.js","./helpers/isAxiosError":"../../node_modules/axios/lib/helpers/isAxiosError.js"}],"../../node_modules/axios/index.js":[function(require,module,exports) {
 module.exports = require('./lib/axios');
-},{"./lib/axios":"../../node_modules/axios/lib/axios.js"}],"login.js":[function(require,module,exports) {
+},{"./lib/axios":"../../node_modules/axios/lib/axios.js"}],"alert.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.login = void 0;
+exports.showAlert = exports.hideAlert = void 0;
+
+// type is either 'success' or 'error'
+var hideAlert = function hideAlert() {
+  var el = document.querySelector('.alert');
+  if (el) el.parentElement.removeChild(el);
+};
+
+exports.hideAlert = hideAlert;
+
+var showAlert = function showAlert(type, msg) {
+  hideAlert();
+  var markup = "<div class=\"alert alert--".concat(type, "\">").concat(msg, "</div>");
+  document.querySelector('body').insertAdjacentElement('afterbegin', markup);
+  window.setTimeout(hideAlert, 5000);
+};
+
+exports.showAlert = showAlert;
+},{}],"login.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.logout = exports.login = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
+
+var _alert = require("./alert");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -11115,8 +11141,9 @@ var login = /*#__PURE__*/function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _context.prev = 0;
-            _context.next = 3;
+            console.log('LOgging in');
+            _context.prev = 1;
+            _context.next = 4;
             return (0, _axios.default)({
               method: 'POST',
               url: 'http://127.0.0.1:3000/api/v1/users/login',
@@ -11126,30 +11153,34 @@ var login = /*#__PURE__*/function () {
               }
             });
 
-          case 3:
+          case 4:
             res = _context.sent;
+            console.log(res.data);
 
-            if (res.status === 'success') {
-              alert('Logged in successfully');
+            if (res.data.status === 'success') {
+              console.log('success'); // showAlert('success', 'Logged in successfully!');
+
+              console.log('alert has popped up.');
               window.setTimeout(function () {
+                console.log('reasigning');
                 location.assign('/');
               }, 1500);
             }
 
-            _context.next = 10;
+            _context.next = 12;
             break;
 
-          case 7:
-            _context.prev = 7;
-            _context.t0 = _context["catch"](0);
-            alert("ERROR : ".concat(_context.t0.response.data.message));
+          case 9:
+            _context.prev = 9;
+            _context.t0 = _context["catch"](1);
+            (0, _alert.showAlert)('error', _context.t0.response.data.message);
 
-          case 10:
+          case 12:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 7]]);
+    }, _callee, null, [[1, 9]]);
   }));
 
   return function login(_x, _x2) {
@@ -11158,7 +11189,47 @@ var login = /*#__PURE__*/function () {
 }();
 
 exports.login = login;
-},{"axios":"../../node_modules/axios/index.js"}],"mapbox.js":[function(require,module,exports) {
+
+var logout = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+    var res;
+    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            _context2.next = 3;
+            return (0, _axios.default)({
+              method: 'GET',
+              url: 'http://127.0.0.1:3000/api/v1/users/logout'
+            });
+
+          case 3:
+            res = _context2.sent;
+            if (res.data.status === 'success') location.reload(true);
+            _context2.next = 10;
+            break;
+
+          case 7:
+            _context2.prev = 7;
+            _context2.t0 = _context2["catch"](0);
+            (0, _alert.showAlert)('error', 'Error logging out! Try again.');
+
+          case 10:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[0, 7]]);
+  }));
+
+  return function logout() {
+    return _ref2.apply(this, arguments);
+  };
+}();
+
+exports.logout = logout;
+},{"axios":"../../node_modules/axios/index.js","./alert":"alert.js"}],"mapbox.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11478,7 +11549,8 @@ var _mapbox = require("./mapbox");
 
 // DOM ELEMENTS
 var mapBox = document.getElementById('map');
-var loginForm = document.querySelector('.form--login'); // DELEGATION
+var loginForm = document.querySelector('.form--login');
+var logOutBtn = document.querySelector('.logout'); // DELEGATION
 
 if (mapBox) {
   var locations = JSON.parse(mapBox.dataset.locations);
@@ -11493,9 +11565,10 @@ if (loginForm) {
     console.log("EMAIL: ".concat(email, ", password: ").concat(password));
     (0, _login.login)(email, password);
   });
-} //////////////////////////////////////////////////
-// Set current year
+}
 
+if (logOutBtn) logOutBtn.addEventListener('click', _login.logout); //////////////////////////////////////////////////
+// Set current year
 
 var yearEl = document.querySelector('.year');
 yearEl.textContent = new Date().getFullYear(); //////////////////////////////////////////////////
